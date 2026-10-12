@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   const clone = value => JSON.parse(JSON.stringify(value));
-  const mediaKeys = ['hero','story','collection','orders','contact','account','workspace','floralFront','floralBack','headerLogo','footerLogo'];
+  const mediaKeys = ['hero','heroLilac','heroSage','story','collection','orders','contact','account','workspace','floralFront','floralBack','headerLogo','footerLogo'];
   function safeImage(value) {
     return value === '' || (typeof value === 'string' && value.length < 9000000 && (/^assets\/[a-zA-Z0-9_./-]+\.(png|webp|jpe?g)$/.test(value) || /^data:image\/(png|webp|jpeg);base64,[A-Za-z0-9+/=]+$/.test(value)));
   }
@@ -22,7 +22,10 @@
       const value = Number(candidate.appearance?.[key]);
       if (Number.isFinite(value)) result.appearance[key] = Math.max(30, Math.min(key === 'flowerScale' ? 150 : 220, value));
     }
-    for (const key of ['flowers','petals']) if (typeof candidate.appearance?.[key] === 'boolean') result.appearance[key] = candidate.appearance[key];
+    for (const key of ['flowers','petals','flowerSway','heroCycle']) if (typeof candidate.appearance?.[key] === 'boolean') result.appearance[key] = candidate.appearance[key];
+    const fonts=['Tajawal','Cairo','Amiri','Noto Naskh Arabic','IBM Plex Sans Arabic','Cinzel','Georgia'];
+    for(const key of ['arabicFont','arabicHeadingFont','englishFont']) if(fonts.includes(candidate.appearance?.[key])) result.appearance[key]=candidate.appearance[key];
+    for(const [key,min,max] of [['fontSize',14,22],['petalDensity',8,50],['heroCycleSeconds',18,90]]){const value=Number(candidate.appearance?.[key]);if(Number.isFinite(value))result.appearance[key]=Math.round(Math.max(min,Math.min(max,value)));}
     if (typeof candidate.links?.email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(candidate.links.email)) result.links.email = candidate.links.email;
     for (const key of ['whatsapp','instagram']) {
       const value = candidate.links?.[key];
@@ -69,6 +72,13 @@
       document.documentElement.style.setProperty('--header-logo-height',a.headerLogoHeight+'px');
       document.documentElement.style.setProperty('--footer-logo-height',a.footerLogoHeight+'px');
       document.documentElement.style.setProperty('--flower-scale',a.flowerScale/100);
+      document.documentElement.style.setProperty('--body-font',a.arabicFont);
+      document.documentElement.style.setProperty('--heading-font',this.language==='ar'?a.arabicHeadingFont:a.englishFont);
+      document.documentElement.style.setProperty('--latin-font',a.englishFont);
+      document.documentElement.style.setProperty('--base-font-size',a.fontSize+'px');
+      document.documentElement.style.setProperty('--hero-cycle-seconds',a.heroCycleSeconds+'s');
+      document.body.classList.toggle('no-flower-sway',!a.flowerSway);
+      document.body.classList.toggle('no-hero-cycle',!a.heroCycle);
       document.body.classList.toggle('no-flowers',!a.flowers);
       document.body.classList.toggle('no-petals',!a.petals);
       document.querySelectorAll('[data-contact]').forEach(el => {
@@ -89,6 +99,7 @@
   };
   Site.ready = (async () => {
     const response = await fetch('content.json'); if(!response.ok) throw new Error('contentUnavailable');
+    if(!document.querySelector('#rufalFontCatalog')){const link=document.createElement('link');link.id='rufalFontCatalog';link.rel='stylesheet';link.href='https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap';document.head.append(link);}
     Site.defaults = await response.json(); Site.config = clone(Site.defaults);
     try { const runtimeResponse=await fetch('/api/status'); if(runtimeResponse.ok) {Site.runtime=await runtimeResponse.json(); if(Site.runtime.database) {const published=await fetch('/api/design');if(published.ok){const value=await published.json();if(value.settings)Site.defaults=sanitize(value.settings,Site.defaults);Site.config=clone(Site.defaults);}}}} catch { /* Static design remains available when server setup is incomplete. */ }
     try { Site.language = localStorage.getItem('rufal-language') === 'en' ? 'en' : 'ar'; } catch {}

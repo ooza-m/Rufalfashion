@@ -19,3 +19,11 @@ Late payment confirmation returns a manual-review error instead of automatically
 ## Current connection checkpoint
 
 On 2026-10-12 an authorized Neon project `rufal-fashion` (`young-brook-36194446`) was created. Its `production` branch (`br-plain-star-arvm66by`), database `rufal`, contains the eleven empty foundation tables. No business records were imported. The production `DATABASE_URL` write to the existing Vercel project returned HTTP 403: production environment-variable permissions are missing. No credentials are stored in this repository. The deployed workspace therefore remains inactive until that setting, Clerk keys and approved owner IDs are configured. Ordering and contact intake remain disabled pending real-service checks.
+
+## Catalog and financial detail release (v0.4)
+
+`002-catalog-finance.sql` adds suppliers, categories, configurable code meanings, immutable base/variant codes, ordered photo galleries, arbitrary option combinations, sale schedules, actual cost components, inventory movements, settlements and idempotent admin operation receipts. Existing records are retained. Original spreadsheet codes must remain unchanged when a future private import is implemented; advance `product_number_seq` beyond the largest imported trailing product sequence before new creation. No original financial or product source data is seeded by this migration.
+
+The migration was tested on `rufal-catalog-finance-v4` (`br-broad-math-arrqf25g`). SQL checks exercised stock protection and settlement arithmetic in rolled-back fixtures. A direct `pg` service integration attempt was blocked by the execution environment's DNS/network restriction; real order concurrency and authenticated owner/staff UI verification remain pending. `tests/live-orders.mjs` is ready for the dedicated test branch after network access is available and must not be run on production.
+
+The public editor has 533 bilingual text keys, five Arabic font options, hero color-cycle controls, petal density and gentle flower motion. The product gallery uses native horizontal swipe with buttons and keyboard controls. Related products use style, category, length, sleeve, color and tags and show up to three actual matches. Reviews are deliberately reserved for a later verified-review workflow.
