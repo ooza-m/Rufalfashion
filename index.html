@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8efdf" />
+    <meta name="description" content="رُفال للأزياء — تصاميم مختارة بعناية." />
+    <title>رُفال | Rufal Fashion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="store.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="skip">تخطي إلى المحتوى</a>
+    <div class="announcement" aria-label="Rufal Fashion">
+      <span data-i18n="announcement">رُفال للأزياء · تصاميم مختارة بعناية</span>
+      <span class="announcement-flower" aria-hidden="true">✧</span>
+    </div>
+
+    <header class="site-header" id="top">
+      <div class="nav-shell">
+        <a class="brand" href="#top" aria-label="Rufal Fashion">
+          <img src="assets/rufal-logo.png" alt="شعار رُفال للأزياء" />
+        </a>
+        <nav class="desktop-nav" aria-label="التنقل الرئيسي">
+          <a href="#collection" data-i18n="collection">المجموعة</a>
+          <a href="#story" data-i18n="story">قصة رُفال</a>
+          <a href="#contact" data-i18n="contact">تواصلي معنا</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="lang-switch" type="button" id="languageToggle" aria-label="Change language">EN</button>
+          <button class="icon-button bag" type="button" id="bagButton" aria-label="سلة التسوق">
+            <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7.5 12.5h17l1.5 15H6l1.5-15Z" stroke="currentColor" stroke-width="1.5"/><path d="M12 14V9a4 4 0 0 1 8 0v5" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+          <button class="icon-button menu-toggle" type="button" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <nav class="mobile-nav" id="mobileNav" aria-label="قائمة الهاتف" hidden>
+        <a href="#collection" data-i18n="collection">المجموعة</a>
+        <a href="#story" data-i18n="story">قصة رُفال</a>
+        <a href="#contact" data-i18n="contact">تواصلي معنا</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-image" role="img" aria-label="فستان أزرق داخل قوس في حديقة رُفال"></div>
+        <div class="hero-shade"></div>
+        <div class="petal petal-a" aria-hidden="true"></div>
+        <div class="petal petal-b" aria-hidden="true"></div>
+        <div class="petal petal-c" aria-hidden="true"></div>
+        <div class="hero-content">
+          <span class="eyebrow">RUFAL FASHION</span>
+          <h1 id="heroTitle" data-i18n="heroTitle">تفاصيل تليق بك</h1>
+          <span class="floral-rule" aria-hidden="true">✣</span>
+          <p data-i18n="heroText">تصاميم مختارة بعناية</p>
+          <a class="primary-button" href="#collection"><span data-i18n="browse">تصفّحي المجموعة</span><span aria-hidden="true">↙</span></a>
+        </div>
+        <div class="hero-edge" aria-hidden="true"></div>
+      </section>
+
+      <section class="collection section" id="collection" aria-labelledby="collectionTitle">
+        <div class="section-intro reveal">
+          <p class="eyebrow accent" data-i18n="collectionEyebrow">من حديقة رُفال</p>
+          <h2 id="collectionTitle" data-i18n="collectionTitle">المجموعة</h2>
+          <div class="section-rule" aria-hidden="true">✣</div>
+        </div>
+        <div class="collection-grid" id="productGrid">
+          <article class="product-skeleton reveal"><div class="arched-frame"><span data-i18n="comingSoon">الصورة قريبًا</span></div><div class="product-copy"><span data-i18n="productPending">تفاصيل المنتج ستُضاف لاحقًا</span></div></article>
+          <article class="product-skeleton reveal"><div class="arched-frame"><span data-i18n="comingSoon">الصورة قريبًا</span></div><div class="product-copy"><span data-i18n="productPending">تفاصيل المنتج ستُضاف لاحقًا</span></div></article>
+          <article class="product-skeleton reveal"><div class="arched-frame"><span data-i18n="comingSoon">الصورة قريبًا</span></div><div class="product-copy"><span data-i18n="productPending">تفاصيل المنتج ستُضاف لاحقًا</span></div></article>
+        </div>
+        <p class="collection-note" data-i18n="collectionNote">ستظهر القطع المتاحة هنا بعد إضافة صورها وتفاصيلها وأسعارها.</p>
+      </section>
+
+      <section class="garden" id="story" aria-labelledby="gardenTitle">
+        <div class="garden-arch" aria-hidden="true"><div class="garden-depth"><span class="garden-path"></span></div></div>
+        <div class="garden-copy reveal">
+          <span class="eyebrow accent">THE RUFAL GARDEN</span>
+          <h2 id="gardenTitle" data-i18n="gardenTitle">كلما اقتربتِ، انفتحت الحديقة</h2>
+          <p data-i18n="gardenText">صفحة تنمو بتفاصيل رُفال: أقواس، أوراق، ومساحات تترك للأزياء حضورها.</p>
+        </div>
+        <div class="branch branch-left" aria-hidden="true">✿</div>
+        <div class="branch branch-right" aria-hidden="true">✿</div>
+      </section>
+
+      <section class="steps section" aria-labelledby="stepsTitle">
+        <div class="section-intro reveal"><p class="eyebrow accent">RUFAL SERVICE</p><h2 id="stepsTitle" data-i18n="stepsTitle">من اختيارك إلى بابك</h2></div>
+        <div class="steps-grid">
+          <div class="step reveal"><span>01</span><h3 data-i18n="step1Title">اختاري القطعة</h3><p data-i18n="step1Text">المقاس والكمية المتاحة يظهران عند إضافة المنتجات.</p></div>
+          <div class="step reveal"><span>02</span><h3 data-i18n="step2Title">أكملي الطلب</h3><p data-i18n="step2Text">ادخلي بيانات التوصيل داخل الإمارات دون إنشاء حساب.</p></div>
+          <div class="step reveal"><span>03</span><h3 data-i18n="step3Title">استلمي رابط الدفع</h3><p data-i18n="step3Text">يرسل فريق رُفال رابط زينة الخاص بطلبك بعد مراجعته.</p></div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div class="footer-mark"><img src="assets/rufal-logo.png" alt="شعار رُفال" /></div>
+      <div><p class="footer-title">RUFAL FASHION</p><p data-i18n="footerLocation">أبوظبي · الإمارات العربية المتحدة</p></div>
+      <div class="footer-links"><span id="emailLink" data-i18n="emailPending">البريد الإلكتروني سيُضاف لاحقًا</span><a href="#top" data-i18n="backToTop">العودة للأعلى ↑</a></div>
+      <small>© <span id="year"></span> RUFAL FASHION</small>
+    </footer>
+
+    <dialog class="bag-dialog" id="bagDialog" aria-labelledby="bagTitle">
+      <form method="dialog"><button class="dialog-close" aria-label="إغلاق">×</button></form>
+      <div class="dialog-icon" aria-hidden="true">✿</div>
+      <h2 id="bagTitle" data-i18n="bagTitle">سلة رُفال</h2>
+      <p data-i18n="bagEmpty">ستُتاح إضافة القطع بعد اعتماد بيانات المنتجات وأسعارها.</p>
+      <form method="dialog"><button class="secondary-button" data-i18n="continueBrowsing">متابعة التصفح</button></form>
+    </dialog>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+# لا تُضاف البيانات المالية أو ملفات العملاء إلى مستودع الموقع.
+*.xlsx
+*.xls
+*.csv
+.env
+.env.*
+!*.env.example
+node_modules/
+upload/
+outputs/
+*.zip
