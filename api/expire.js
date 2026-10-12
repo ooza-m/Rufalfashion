@@ -1,0 +1,2 @@
+import{timingSafeEqual}from'node:crypto';import{handler,reply}from'../lib/server.mjs';import{AppError}from'../lib/domain.mjs';import{expireOrders}from'../lib/orders.mjs';
+export default handler(async(req,res)=>{const expected=process.env.CRON_SECRET?Buffer.from('Bearer '+process.env.CRON_SECRET):null,got=Buffer.from(req.headers.authorization||'');if(!expected||got.length!==expected.length||!timingSafeEqual(got,expected))throw new AppError('unauthorized',401);if(req.method!=='GET')return reply(res,405,{error:'method_not_allowed'});reply(res,200,await expireOrders());});

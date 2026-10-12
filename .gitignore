@@ -9,3 +9,7 @@ node_modules/
 upload/
 outputs/
 *.zip
+
+dist/
+.vercel/
+*.log

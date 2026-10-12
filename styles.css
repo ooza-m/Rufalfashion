@@ -12,3 +12,7 @@ html[dir=ltr] .desktop-nav,html[dir=ltr] .product-gallery,html[dir=ltr] .product
 .ui-board{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;margin:24px auto 55px;max-width:1400px}
 .product-photo{align-items:end;padding:20px;background-position:20% center}
 .photo-placeholder{font-size:.8rem;padding:9px 15px}
+
+.cart-lines{display:grid;gap:15px;margin:25px 0;text-align:start}.cart-line{padding:12px;border-bottom:1px solid var(--line)}.cart-line button{border:0;background:none;color:var(--terra-dark);font:inherit}.real-product img{width:100%;height:100%;object-fit:cover;display:block}.real-product .product-copy{color:var(--ink)}.product-photo>img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}.product-photo{position:relative}.product-photo .photo-placeholder{position:relative;z-index:2}@media(max-width:560px){.account-link{width:32px;height:44px;padding:7px}.header-right{gap:0}}
+
+@media(max-width:850px){.nav-shell{grid-template-columns:88px minmax(0,1fr) 88px;gap:6px;padding:10px 16px}.header-left,.header-right{gap:0}.header-left .lang-switch{width:40px;padding:8px}.header-right .icon-button{width:44px;height:44px;padding:10px}.nav-shell .brand{width:100%;max-width:128px;height:var(--header-logo-height)}.nav-shell .brand img{max-width:100%;width:100%;height:100%;object-fit:contain}}

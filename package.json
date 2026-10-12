@@ -1,0 +1,1 @@
+{"name":"rufal-fashion","version":"0.3.0","private":true,"type":"module","engines":{"node":"24.x"},"scripts":{"build":"node scripts/build.mjs","test":"node --test tests/*.test.mjs","db:migrate":"node scripts/migrate.mjs"},"dependencies":{"@clerk/backend":"3.23.2","pg":"8.23.1"}}

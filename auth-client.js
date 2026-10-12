@@ -1,0 +1,8 @@
+(function(){
+ let promise;
+ async function load(){if(promise)return promise;promise=(async()=>{const response=await fetch('/api/status');if(!response.ok)throw Error('unavailable');const status=await response.json();if(!status.authentication||!status.publishableKey)throw Error('unconfigured');const key=status.publishableKey;if(!/^pk_(test|live)_[A-Za-z0-9+/=]+$/.test(key))throw Error('invalid_key');const domain=atob(key.split('_')[2]).replace(/\$$/,'');if(!/^[a-z0-9.-]+$/i.test(domain)||(!domain.endsWith('.clerk.accounts.dev')&&!domain.startsWith('clerk.')))throw Error('invalid_domain');
+ const script=(src,key)=>new Promise((resolve,reject)=>{const e=document.createElement('script');e.src=src;e.crossOrigin='anonymous';e.async=true;if(key)e.dataset.clerkPublishableKey=key;e.onload=resolve;e.onerror=()=>reject(Error('unavailable'));document.head.append(e);});
+ await script('https://'+domain+'/npm/@clerk/ui@1/dist/ui.browser.js');await script('https://'+domain+'/npm/@clerk/clerk-js@6/dist/clerk.browser.js',key);await window.Clerk.load({ui:{ClerkUI:window.__internal_ClerkUICtor}});return window.Clerk;})();return promise;}
+ async function request(resource,method='GET',data){const clerk=await load();if(!clerk.session)throw Error('unauthorized');const token=await clerk.session.getToken();const response=await fetch('/api/admin?resource='+encodeURIComponent(resource),{method,headers:{Authorization:'Bearer '+token,...(data?{'Content-Type':'application/json'}:{})},...(data?{body:JSON.stringify(data)}:{})});const value=await response.json();if(!response.ok)throw Error(value.error||'unavailable');return value;}
+ window.RufalAuth={load,request};
+})();

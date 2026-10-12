@@ -90,6 +90,7 @@
   Site.ready = (async () => {
     const response = await fetch('content.json'); if(!response.ok) throw new Error('contentUnavailable');
     Site.defaults = await response.json(); Site.config = clone(Site.defaults);
+    try { const runtimeResponse=await fetch('/api/status'); if(runtimeResponse.ok) {Site.runtime=await runtimeResponse.json(); if(Site.runtime.database) {const published=await fetch('/api/design');if(published.ok){const value=await published.json();if(value.settings)Site.defaults=sanitize(value.settings,Site.defaults);Site.config=clone(Site.defaults);}}}} catch { /* Static design remains available when server setup is incomplete. */ }
     try { Site.language = localStorage.getItem('rufal-language') === 'en' ? 'en' : 'ar'; } catch {}
     if (!new URL(location.href).searchParams.has('published')) {
       try { const value = await draft('get'); if(value) Site.config = sanitize(value,Site.defaults); } catch {}
